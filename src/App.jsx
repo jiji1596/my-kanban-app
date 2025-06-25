@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "./App.css";
 import { KanbanBoard } from "./features/KanbanBoard";
-import { Box, Container } from '@mui/material';
+import { Box, Container } from "@mui/material";
 
 function App() {
-  const [nextId, setNextId] = useState(null);
-  const [boardData, SetBoardData] = useState([
+  const [nextId, setNextId] = useState(7);
+  const [boardData, setBoardData] = useState([
     {
       id: 1,
       title: "To Do",
@@ -30,8 +30,22 @@ function App() {
     },
   ]);
 
-
-
+  function addCard(task, colId) {
+    console.log("Adding task:", task, "to column:", colId);
+    setBoardData((prev) => {
+      const updated = prev.map((column) =>
+        column.id === colId
+          ? {
+              ...column,
+              cards: [...column.cards, { id: nextId, text: task }],
+            }
+          : column
+      );
+      console.log("Updated board:", updated); // 👈 Check if the card is added here
+      return updated;
+    });
+    setNextId((id) => id + 1);
+  }
 
   return (
     <Box
@@ -41,11 +55,11 @@ function App() {
         color: "text.primary",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
       }}
     >
       <Container maxWidth="lg">
-        <KanbanBoard nextId={nextId} boardData={boardData} />
+        <KanbanBoard nextId={nextId} boardData={boardData} addCard={addCard} />
       </Container>
     </Box>
   );

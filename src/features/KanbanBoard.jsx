@@ -1,7 +1,8 @@
 import { Stack } from "@mui/material";
 import { Column } from "../components/Column";
 
-export const KanbanBoard = ({ boardData, nextId }) => {
+export const KanbanBoard = ({ boardData, nextId, addCard }) => {
+
   return (
     <Stack
       direction="row"
@@ -13,12 +14,14 @@ export const KanbanBoard = ({ boardData, nextId }) => {
         alignItems: "stretch" // give the board a vertical presence
       }}
     >
-      {boardData.map((col) => {
+      {Array.isArray(boardData) && boardData.map((col) => {
         return (
           <Column
           nextId={nextId}
           key={col.id}
-          col={col}></Column>
+          col={col}
+          addCard={addCard} />
+
         );
       })}
     </Stack>
