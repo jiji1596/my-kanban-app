@@ -12,21 +12,21 @@ function App() {
       cards: [
         { id: 1, text: "eat" },
         { id: 2, text: "sleep" },
-        { id: 2, text: "code" },
+        { id: 3, text: "code" },
       ],
     },
     {
       id: 2,
       title: "In Progress",
       cards: [
-        { id: 1, text: "eat" },
-        { id: 2, text: "sleep" },
+        { id: 4, text: "eat" },
+        { id: 5, text: "sleep" },
       ],
     },
     {
       id: 3,
       title: "Done",
-      cards: [{ id: 1, text: "Wash dishes" }],
+      cards: [{ id: 6, text: "Wash dishes" }],
     },
   ]);
 

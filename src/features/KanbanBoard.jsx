@@ -16,9 +16,8 @@ export const KanbanBoard = ({ boardData, nextId }) => {
       {boardData.map((col) => {
         return (
           <Column
-          sx={{
-            height: "100%"
-          }}
+          nextId={nextId}
+          key={col.id}
           col={col}></Column>
         );
       })}

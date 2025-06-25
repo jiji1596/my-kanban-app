@@ -1,12 +1,17 @@
-import { Paper, Box } from "@mui/material";
+import { Paper, Box, Typography } from "@mui/material";
+import { CardItem } from "./CardItem";
 
-export const Column = ({ col }) => {
+export const Column = ({ col, nextId }) => {
   return (
-    <Box sx={{
+    <Box
+      sx={{
         width: "100%",
         height: "100%", // give the board a vertical presence
-      }} >
-      <h4>{col.title}</h4>
+      }}
+    >
+      <Typography variant="h3" align="center" sx={{ marginBottom: "20px" }}>
+        {col.title}
+      </Typography>
       <Paper
         elevation={3}
         sx={{
@@ -15,10 +20,12 @@ export const Column = ({ col }) => {
           display: "flex",
           flexDirection: "column",
           overflowY: "auto",
-          height: "100%"
+          height: "100%",
         }}
       >
-        Item {col.id}
+        {col.cards.map((card) => {
+          return <CardItem key={card.id} text={card.text} />;
+        })}
       </Paper>
     </Box>
   );
