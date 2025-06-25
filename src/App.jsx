@@ -1,34 +1,53 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import { ThemeProvider } from '@mui/material/styles';
+import { useState } from "react";
 import "./App.css";
+import { KanbanBoard } from "./features/KanbanBoard";
+import { Box, Container } from '@mui/material';
 
 function App() {
+  const [nextId, setNextId] = useState(null);
+  const [boardData, SetBoardData] = useState([
+    {
+      id: 1,
+      title: "To Do",
+      cards: [
+        { id: 1, text: "eat" },
+        { id: 2, text: "sleep" },
+        { id: 2, text: "code" },
+      ],
+    },
+    {
+      id: 2,
+      title: "In Progress",
+      cards: [
+        { id: 1, text: "eat" },
+        { id: 2, text: "sleep" },
+      ],
+    },
+    {
+      id: 3,
+      title: "Done",
+      cards: [{ id: 1, text: "Wash dishes" }],
+    },
+  ]);
+
+
+
+
   return (
-    <>
-       <ThemeProvider
-      theme={{
-        palette: {
-          primary: {
-            main: '#007FFF',
-            dark: '#0066CC',
-          },
-        },
+    <Box
+      sx={{
+        minHeight: "100vh",
+        bgcolor: "background.default",
+        color: "text.primary",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
       }}
     >
-      <Box
-        sx={{
-          width: 100,
-          height: 100,
-          borderRadius: 1,
-          bgcolor: 'primary.main',
-          '&:hover': {
-            bgcolor: 'primary.dark',
-          },
-        }}
-      />
-    </ThemeProvider>
-    </>
+      <Container maxWidth="lg">
+        <KanbanBoard nextId={nextId} boardData={boardData} />
+      </Container>
+    </Box>
   );
 }
 
