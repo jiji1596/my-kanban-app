@@ -19,6 +19,7 @@ export const CardItem = ({ id, text, colId }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(text);
   const onUpdate = useKanbanStore((s) => s.updateCard);
+  const onDelete = useKanbanStore((s) => s.deleteCard);
 
   const handleSave = () => {
     if (editText.trim() !== "") {
@@ -31,6 +32,10 @@ export const CardItem = ({ id, text, colId }) => {
     setEditText(text);
     setIsEditing(false);
   };
+
+  const handleDelete = () => {
+    onDelete(colId, id)
+  }
 
   return (
     <Card
@@ -67,6 +72,9 @@ export const CardItem = ({ id, text, colId }) => {
             <Typography variant="body1">{text}</Typography>
             <IconButton onClick={() => setIsEditing(true)}>
               <EditIcon />
+            </IconButton>
+            <IconButton onClick={() => handleDelete()}>
+              X
             </IconButton>
           </Stack>
         )}

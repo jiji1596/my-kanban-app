@@ -45,6 +45,17 @@ export const useKanbanStore = create(
 
         set({ boardData: updatedBoard });
       },
+
+      deleteCard: (colId, cardId) => {
+        const board = get().boardData;
+        const updatedBoard = board.map((col) => {
+          if (col.id !== colId ) return col;
+          const updatedCards = col.cards.filter((card) => card.id !== cardId);
+          return {...col, cards: updatedCards};
+        })
+
+        set({boardData: updatedBoard})
+      }
     }),
     {
       name: "kanban-storage",
