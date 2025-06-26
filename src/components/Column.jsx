@@ -12,8 +12,6 @@ import ClickAwayListener from "@mui/material/ClickAwayListener";
 import AddIcon from "@mui/icons-material/Add";
 
 export const Column = ({ col, addCard }) => {
-  console.log("Rendering column:", col.title);
-  console.log("Cards:", col.cards);
   const [task, setTask] = useState("");
   const [open, setOpen] = useState(false);
 
@@ -76,7 +74,7 @@ export const Column = ({ col, addCard }) => {
           </Box>
         </ClickAwayListener>
         {col.cards.map((card) => {
-          return <CardItem key={card.id} text={card.text} />;
+          return <CardItem key={card.id} text={card.text} id={card.id} colId={col.id}  />;
         })}
       </Paper>
     </Box>
