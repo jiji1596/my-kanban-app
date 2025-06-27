@@ -18,7 +18,7 @@ export const Column = ({ col, addCard }) => {
   return (
     <Box
       sx={{
-        width: "100%",
+        width: "500px",
         height: "100%", // give the board a vertical presence
       }}
     >

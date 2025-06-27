@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { Column } from "../components/Column";
 
 export const KanbanBoard = ({ boardData, nextId, addCard }) => {
@@ -10,7 +10,7 @@ export const KanbanBoard = ({ boardData, nextId, addCard }) => {
       sx={{
         width: "100%",
         maxWidth: "1200px", // limit max width of board
-        height: "80vh",
+        height: "70vh",
         alignItems: "stretch" // give the board a vertical presence
       }}
     >

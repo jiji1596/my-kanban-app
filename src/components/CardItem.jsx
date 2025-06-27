@@ -15,7 +15,6 @@ import { useState } from "react";
 import { useKanbanStore } from "../store/useKanbanStore"; // adjust the path if needed
 
 export const CardItem = ({ id, text, colId }) => {
-
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(text);
   const onUpdate = useKanbanStore((s) => s.updateCard);
@@ -34,8 +33,8 @@ export const CardItem = ({ id, text, colId }) => {
   };
 
   const handleDelete = () => {
-    onDelete(colId, id)
-  }
+    onDelete(colId, id);
+  };
 
   return (
     <Card
@@ -43,8 +42,6 @@ export const CardItem = ({ id, text, colId }) => {
       sx={{
         mb: 2,
         borderRadius: 2,
-        transition: "0.2s ease",
-        ":hover": { transform: "scale(1.02)", boxShadow: 6 },
       }}
     >
       <CardContent>
@@ -54,7 +51,9 @@ export const CardItem = ({ id, text, colId }) => {
               value={editText}
               onChange={(e) => setEditText(e.target.value)}
               size="small"
-              fullWidth
+              sx={{
+                width: "100%",
+              }}
             />
             <IconButton onClick={handleSave}>
               <SaveIcon />
@@ -69,13 +68,21 @@ export const CardItem = ({ id, text, colId }) => {
             justifyContent="space-between"
             alignItems="center"
           >
-            <Typography variant="body1">{text}</Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                width: "100%",
+                wordWrap: "break-word",
+                wordBreak: "break-word", // ensures breaking inside long words
+                whiteSpace: "pre-wrap", // preserves spaces and breaks
+              }}
+            >
+              {text}
+            </Typography>
             <IconButton onClick={() => setIsEditing(true)}>
               <EditIcon />
             </IconButton>
-            <IconButton onClick={() => handleDelete()}>
-              X
-            </IconButton>
+            <IconButton onClick={() => handleDelete()}>X</IconButton>
           </Stack>
         )}
       </CardContent>
