@@ -54,7 +54,7 @@ export const CardItem = ({ id, text, colId, color}) => {
       ref={setNodeRef}
       {...attributes}
     >
-      <CardContent>
+      <CardContent sx={{color: "#000000"}}>
         {isEditing ? (
           <Stack direction="row" spacing={1} alignItems="center">
             <TextField
