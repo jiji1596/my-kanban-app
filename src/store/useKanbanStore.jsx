@@ -9,16 +9,19 @@ export const useKanbanStore = create(
           id: 1,
           title: "To Do",
           cards: [{ id: 1, text: "Buy milk" }],
+          color: "rgba(235,65,85,0.8)"
         },
         {
           id: 2,
           title: "In Progress",
           cards: [{ id: 2, text: "Work on project" }],
+          color: "rgba(78,176,224,0.8)"
         },
         {
           id: 3,
           title: "Done",
           cards: [{ id: 3, text: "Nap" }],
+          color: "rgba(170,243,162,0.8)"
         },
       ],
       nextId: 4,

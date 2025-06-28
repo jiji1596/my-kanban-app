@@ -15,7 +15,7 @@ import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import { useState } from "react";
 import { useKanbanStore } from "../store/useKanbanStore"; // adjust the path if needed
 
-export const CardItem = ({ id, text, colId }) => {
+export const CardItem = ({ id, text, colId, color}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(text);
   const onUpdate = useKanbanStore((s) => s.updateCard);
@@ -46,6 +46,7 @@ export const CardItem = ({ id, text, colId }) => {
       sx={{
         mb: 2,
         borderRadius: 2,
+        bgcolor: color,
         transform: transform
           ? `translate(${transform.x}px, ${transform.y}px)`
           : undefined,
@@ -77,7 +78,7 @@ export const CardItem = ({ id, text, colId }) => {
             justifyContent="space-between"
             alignItems="center"
           >
-            <Box {...listeners} sx={{ cursor: "grab", pr: 1, display: "flex", alignItems: "center", color: "rgba(256, 256, 256, 0.2)" }}>
+            <Box {...listeners} sx={{ cursor: "grab", pr: 1, display: "flex", alignItems: "center" }}>
               <DragIndicatorIcon />
             </Box>
             <Typography

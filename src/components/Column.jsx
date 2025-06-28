@@ -84,6 +84,7 @@ export const Column = ({ col, addCard }) => {
               text={card.text}
               id={card.id}
               colId={col.id}
+              color={col.color}
             />
           );
         })}
