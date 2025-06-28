@@ -11,6 +11,7 @@ import { useDraggable } from "@dnd-kit/core";
 import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Check";
 import CancelIcon from "@mui/icons-material/Close";
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import { useState } from "react";
 import { useKanbanStore } from "../store/useKanbanStore"; // adjust the path if needed
 
@@ -76,8 +77,8 @@ export const CardItem = ({ id, text, colId }) => {
             justifyContent="space-between"
             alignItems="center"
           >
-            <Box {...listeners} sx={{ cursor: "grab", pr: 1 }}>
-              :::
+            <Box {...listeners} sx={{ cursor: "grab", pr: 1, display: "flex", alignItems: "center", color: "rgba(256, 256, 256, 0.2)" }}>
+              <DragIndicatorIcon />
             </Box>
             <Typography
               variant="body1"
