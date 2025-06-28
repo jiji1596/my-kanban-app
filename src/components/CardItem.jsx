@@ -7,7 +7,7 @@ import {
   Box,
   Stack,
 } from "@mui/material";
-
+import { useDraggable } from "@dnd-kit/core";
 import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Check";
 import CancelIcon from "@mui/icons-material/Close";
@@ -19,6 +19,9 @@ export const CardItem = ({ id, text, colId }) => {
   const [editText, setEditText] = useState(text);
   const onUpdate = useKanbanStore((s) => s.updateCard);
   const onDelete = useKanbanStore((s) => s.deleteCard);
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    id: `${colId}-${id}`,
+  });
 
   const handleSave = () => {
     if (editText.trim() !== "") {
@@ -42,7 +45,13 @@ export const CardItem = ({ id, text, colId }) => {
       sx={{
         mb: 2,
         borderRadius: 2,
+               transform: transform
+          ? `translate(${transform.x}px, ${transform.y}px)`
+          : undefined,
       }}
+       ref={setNodeRef}
+      {...listeners}
+      {...attributes}
     >
       <CardContent>
         {isEditing ? (

@@ -49,13 +49,40 @@ export const useKanbanStore = create(
       deleteCard: (colId, cardId) => {
         const board = get().boardData;
         const updatedBoard = board.map((col) => {
-          if (col.id !== colId ) return col;
+          if (col.id !== colId) return col;
           const updatedCards = col.cards.filter((card) => card.id !== cardId);
-          return {...col, cards: updatedCards};
-        })
+          return { ...col, cards: updatedCards };
+        });
 
-        set({boardData: updatedBoard})
-      }
+        set({ boardData: updatedBoard });
+      },
+      moveCard: (cardId, fromColId, toColId) => {
+        const board = get().boardData;
+        let movingCard;
+
+        const updatedBoard = board
+          .map((col) => {
+            if (col.id === fromColId) {
+              const newCards = col.cards.filter((card) => {
+                if (card.id === cardId) {
+                  movingCard = card;
+                  return false;
+                }
+                return true;
+              });
+              return { ...col, cards: newCards };
+            }
+            return col;
+          })
+          .map((col) => {
+            if (col.id === toColId && movingCard) {
+              return { ...col, cards: [...col.cards, movingCard] };
+            }
+            return col;
+          });
+
+        set({ boardData: updatedBoard });
+      },
     }),
     {
       name: "kanban-storage",

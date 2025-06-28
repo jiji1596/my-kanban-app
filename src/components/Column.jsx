@@ -10,13 +10,18 @@ import {
 import { CardItem } from "./CardItem";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import AddIcon from "@mui/icons-material/Add";
+import { useDroppable } from "@dnd-kit/core";
 
 export const Column = ({ col, addCard }) => {
   const [task, setTask] = useState("");
   const [open, setOpen] = useState(false);
+  const { setNodeRef } = useDroppable({
+    id: col.id,
+  });
 
   return (
     <Box
+      ref={setNodeRef}
       sx={{
         width: "500px",
         height: "100%", // give the board a vertical presence
@@ -61,11 +66,10 @@ export const Column = ({ col, addCard }) => {
                 <Button
                   variant="contained"
                   onClick={() => {
-                     if (task.trim() === "") return;
-                     addCard(task.trim(), col.id);
-                     setTask("");
-                    }
-                  }
+                    if (task.trim() === "") return;
+                    addCard(task.trim(), col.id);
+                    setTask("");
+                  }}
                 >
                   Add
                 </Button>
@@ -74,7 +78,14 @@ export const Column = ({ col, addCard }) => {
           </Box>
         </ClickAwayListener>
         {col.cards.map((card) => {
-          return <CardItem key={card.id} text={card.text} id={card.id} colId={col.id}  />;
+          return (
+            <CardItem
+              key={card.id}
+              text={card.text}
+              id={card.id}
+              colId={col.id}
+            />
+          );
         })}
       </Paper>
     </Box>
