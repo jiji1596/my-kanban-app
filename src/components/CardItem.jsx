@@ -45,12 +45,11 @@ export const CardItem = ({ id, text, colId }) => {
       sx={{
         mb: 2,
         borderRadius: 2,
-               transform: transform
+        transform: transform
           ? `translate(${transform.x}px, ${transform.y}px)`
           : undefined,
       }}
-       ref={setNodeRef}
-      {...listeners}
+      ref={setNodeRef}
       {...attributes}
     >
       <CardContent>
@@ -77,6 +76,9 @@ export const CardItem = ({ id, text, colId }) => {
             justifyContent="space-between"
             alignItems="center"
           >
+            <Box {...listeners} sx={{ cursor: "grab", pr: 1 }}>
+              :::
+            </Box>
             <Typography
               variant="body1"
               sx={{

@@ -35,7 +35,7 @@ function App() {
       >
         <Container maxWidth="lg">
           <Typography
-            variant="h1"
+            variant="h2"
             sx={{
               fontFamily: "Montserrat",
               fontWeight: 500,

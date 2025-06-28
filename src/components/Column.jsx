@@ -27,7 +27,7 @@ export const Column = ({ col, addCard }) => {
         height: "100%", // give the board a vertical presence
       }}
     >
-      <Typography variant="h3" align="center" sx={{ marginBottom: "20px" }}>
+      <Typography variant="h5" align="center" sx={{ marginBottom: "20px" }}>
         {col.title}
       </Typography>
       <Paper
